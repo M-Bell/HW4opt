@@ -11,6 +11,7 @@ import Product.Product;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +20,9 @@ public class Tester {
         ArrayList<Product> products = new ArrayList<>();
         FoodProduct cigars = new FoodProduct("420 Blaze it fgt", 6.90, 1400, AgeRestriction.ADULT);
         FoodProduct apples = new FoodProduct("Green apple", 2.30, 100, AgeRestriction.NONE);
+        apples.setExpDate(new Date(0));
         FoodProduct energetic = new FoodProduct("Red Bull", 12.90, 1200, AgeRestriction.TEENAGER);
-        FoodProduct beer = new FoodProduct("Bud", 21.20, 1000, AgeRestriction.ADULT);
+        FoodProduct beer = new FoodProduct("Bud", 21.20, 0, AgeRestriction.ADULT);
         Appliance lamp = new Appliance("Lamp", 210.20, 800, AgeRestriction.NONE);
         Appliance clock = new Appliance("Clock", 100.20, 200, AgeRestriction.NONE);
         Computer mac = new Computer("Mac", 32100.99, 700, AgeRestriction.ADULT);
@@ -31,15 +33,39 @@ public class Tester {
         products.add(lamp);
         products.add(clock);
         products.add(mac);
+
         Customer pecata = new Customer("Pecata", 17, 30.00);
-        validatedPurchase(cigars, pecata);
-        Customer gopeto = new Customer("Gopeto", 18, 20);
-        validatedPurchase(cigars, gopeto);
+        Customer gopeto = new Customer("Gopeto", 18, 0.44);
         Customer rich = new Customer("Richie", 22, 40000);
 
+        //Adult exception
+        validatedPurchase(cigars, pecata);
+
+        //Money exception
         validatedPurchase(cigars, gopeto);
+
+        //Quantity exception
+        validatedPurchase(beer, rich);
+
+        //Expire exception
+        validatedPurchase(apples, rich);
+
+        //Mac before purchase
+        System.out.println(mac);
+
+        //Rich before purchase
+        System.out.println(rich);
+
+        //Successful purchase
         validatedPurchase(mac, rich);
-        validatedPurchase(mac, rich);
+
+        //Mac after purchase
+        System.out.println(mac);
+
+        //Rich after purchase
+        System.out.println(rich);
+
+
         getSoonestExpirable(products);
         getAdultPriceList(products);
 

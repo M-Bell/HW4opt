@@ -1,4 +1,4 @@
 package Exceptions;
 
-public class AgeRestrictionException extends Exception{
+public class AgeRestrictionException extends Exception {
 }

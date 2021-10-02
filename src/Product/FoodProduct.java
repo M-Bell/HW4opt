@@ -8,8 +8,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class FoodProduct extends Product implements Expirable {
-    private final Date expDate;
-    private final long daysDiff;
+    private Date expDate;
+    private long daysDiff;
 
     public FoodProduct(String name, double price, int quantity, AgeRestriction ageRestriction) {
         super(name, price, quantity, ageRestriction);
@@ -32,6 +32,11 @@ public class FoodProduct extends Product implements Expirable {
         Calendar cal = Calendar.getInstance();
         cal.set(2021, month, day);
         return cal.getTime();
+    }
+
+    public void setExpDate(Date expDate) {
+        this.expDate = expDate;
+        daysDiff = TimeUnit.MILLISECONDS.toDays(expDate.getTime()) - TimeUnit.MILLISECONDS.toDays(Calendar.getInstance().getTime().getTime());
     }
 
     public int getDaysDiff() {

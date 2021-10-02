@@ -1,4 +1,4 @@
 package Exceptions;
 
-public class ProductExpiredException extends Exception{
+public class ProductExpiredException extends Exception {
 }

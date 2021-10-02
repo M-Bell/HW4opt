@@ -1,4 +1,4 @@
 package Exceptions;
 
-public class NotEnoughProductException extends Exception{
+public class NotEnoughProductException extends Exception {
 }

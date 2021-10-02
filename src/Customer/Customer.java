@@ -8,16 +8,16 @@ public class Customer {
     public Customer(String name, int age, double balance) {
         this.name = name;
         setAge(age);
-        this.balance = balance;
+        setBalance(balance);
     }
 
     public void setAge(int age) {
-        if(age < 0) this.age = 0;
+        if (age < 0) return;
         this.age = age;
     }
 
     public void setBalance(double balance) {
-        if(balance < 0) this.balance = 0;
+        if (balance < 0) return;
         this.balance = balance;
     }
 
@@ -31,5 +31,12 @@ public class Customer {
 
     public double getBalance() {
         return balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: '" + name + '\'' +
+                "\nAge: " + age +
+                "\nBalance: " + balance + '\n';
     }
 }
